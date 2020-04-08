@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - '12.14.1'
+
+jobs:
+  include:
+    - stage: test
+      script: yarn test
+    - stage: deploy
+      if: branch = master
+      script: yarn deploy
+
+after_success:
+  - yarn codecov
+
+notifications:
+  email:
+    recipients:
+      - me@silverxu.com
+    on_success: always
+    on_failure: always
