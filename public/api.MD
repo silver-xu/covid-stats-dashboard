@@ -52,6 +52,8 @@ Here is the example response:
 
 Full API documentation can be found at [here](http://docs.covidstats.com.au).
 
+GraphQL Playground can be found at [here](https://api.covidstats.com.au/graphql)
+
 ## Free API
 
 In order to encourage developer's creativities during the pandemic, there is `no charge`, `no rate limiting`, and `CORS enabled` to the COVIDStats GraphQL API, although fair usage is enforced strictly, and rate limiting may be introduced at `COVIDStats' discretion` in the future.
