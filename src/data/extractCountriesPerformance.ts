@@ -31,8 +31,8 @@ export const extractCountriesPerformance = (data: any, metrics: string, topPerfo
     };
   });
   const listedCountries = topPerforming
-    ? countryRates.sort((countryRateA: any, countryRateB: any) => countryRateA.rate - countryRateB.rate).splice(0, 5)
-    : countryRates.sort((countryRateA: any, countryRateB: any) => countryRateB.rate - countryRateA.rate).splice(0, 5);
+    ? countryRates.sort((countryRateA: any, countryRateB: any) => countryRateA.rate - countryRateB.rate).slice(0, 5)
+    : countryRates.sort((countryRateA: any, countryRateB: any) => countryRateB.rate - countryRateA.rate).slice(0, 5);
 
   const results = listedCountries
     .map((listedCountry: any) => {

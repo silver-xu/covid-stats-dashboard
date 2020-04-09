@@ -69,6 +69,73 @@ export const SideMenu = () => {
             </Item>
           ))}
         </SubMenu>
+        <SubMenu
+          key="USMenu"
+          title={
+            <span>
+              <HomeOutlined />
+              United States
+            </span>
+          }
+        >
+          <Item key="US">
+            <MonitorOutlined />
+            Overview
+          </Item>
+
+          {Object.entries(countries.US.states).map(([stateCode, state]) => (
+            <Item key={`US.${stateCode}`}>
+              <BarChartOutlined />
+              {state.name}
+            </Item>
+          ))}
+        </SubMenu>
+        <SubMenu
+          key="ChinaMenu"
+          title={
+            <span>
+              <HomeOutlined />
+              China
+            </span>
+          }
+        >
+          <Item key="China">
+            <MonitorOutlined />
+            Overview
+          </Item>
+
+          {Object.entries(countries.China.states).map(([stateCode, state]) => (
+            <Item key={`China.${stateCode}`}>
+              <BarChartOutlined />
+              {state.name}
+            </Item>
+          ))}
+        </SubMenu>
+        <SubMenu
+          key="CanadaMenu"
+          title={
+            <span>
+              <HomeOutlined />
+              Canada
+            </span>
+          }
+        >
+          <Item key="Canada">
+            <MonitorOutlined />
+            Overview
+          </Item>
+
+          {Object.entries(countries.Canada.states).map(([stateCode, state]) => (
+            <Item key={`Canada.${stateCode}`}>
+              <BarChartOutlined />
+              {state.name}
+            </Item>
+          ))}
+        </SubMenu>
+        <Item key="UK">
+          <BarChartOutlined />
+          United Kingdom
+        </Item>
         <Item key="Italy">
           <BarChartOutlined />
           Italy
@@ -88,6 +155,14 @@ export const SideMenu = () => {
         <Item key="KoreaSouth">
           <BarChartOutlined />
           South Korea
+        </Item>
+        <Item key="India">
+          <BarChartOutlined />
+          India
+        </Item>
+        <Item key="Iran">
+          <BarChartOutlined />
+          Iran
         </Item>
       </SubMenu>
     </Menu>

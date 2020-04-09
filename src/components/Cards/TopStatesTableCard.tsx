@@ -20,7 +20,7 @@ export const TopStatsTableCard = ({ countryCode, take }: { countryCode: string; 
       .sort((stateA: any, stateB: any) => stateB.totalConfirmedCases - stateA.totalConfirmedCases)
       .slice(0, take || Number.MAX_SAFE_INTEGER)
       .map((state: any) => ({
-        name: (countries.Australia as any).states[state.stateCode].name,
+        name: ((countries as any)[countryCode] as any).states[state.stateCode].name,
         ...state,
       }));
 
