@@ -28,7 +28,7 @@ const App = () => (
               </a>
             </Menu.Item>
             <Menu.Item key="3">
-              <Link to="/api">Open Source API</Link>
+              <Link to="/api">GraphQL API</Link>
             </Menu.Item>
           </Menu>
         </Layout.Header>
