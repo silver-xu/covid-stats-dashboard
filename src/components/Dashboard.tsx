@@ -9,6 +9,9 @@ import { MenuContext } from '../contexts/menuContext';
 import { StateDashboard } from './State/StateDashboard';
 import { default as countries } from '../config/countries.json';
 import { CountryDashboard } from './CountryDashboard';
+import { USDashboard } from './US/USDashboard';
+import { CanadaDashboard } from './Canada/CanadaDashboard';
+import { ChinaDashboard } from './China/ChinaDashboard';
 
 const { Content, Sider } = Layout;
 const { Item } = Breadcrumb;
@@ -23,7 +26,7 @@ export const Dashboard = () => {
   const child = parent ? getStateName(key, parent) : getCountryName(key);
 
   const isGenericCountry = (key: string, parent?: string) =>
-    !parent && !['Global', 'Australia'].find((countryCode) => key === countryCode);
+    !parent && !['Global', 'Australia', 'US', 'Canada', 'China'].find((countryCode) => key === countryCode);
 
   return (
     <Content style={contentStyles}>
@@ -40,6 +43,10 @@ export const Dashboard = () => {
           <Content style={contentStyles}>
             {menu.item.key === 'Global' && <WorldDashboard />}
             {menu.item.key === 'Australia' && <AustraliaDashboard />}
+            {menu.item.key === 'US' && <USDashboard />}
+            {menu.item.key === 'China' && <ChinaDashboard />}
+            {menu.item.key === 'Canada' && <CanadaDashboard />}
+
             {isGenericCountry(key, parent) && <CountryDashboard countryCode={key} />}
             {menu.item.parent && <StateDashboard countryCode={menu.item.parent} stateCode={menu.item.key} />}
           </Content>

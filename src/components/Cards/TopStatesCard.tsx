@@ -9,6 +9,7 @@ import { titleStyle } from '../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { radioButtonGroupStyles } from './TopStatesCard.styles';
 import { getTopStatesQuery } from '../../queries/getTopStatesQuery';
+import { stateOrProvince } from '../../utils/stateOrProvince';
 
 export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const [metrics, setMetrics] = useState<Metrics>('totalConfirmedCases');
@@ -24,7 +25,7 @@ export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take
 
   const topStates =
     data &&
-    (Object.entries(data.global.Australia) as any)
+    (Object.entries(data.global[countryCode]) as any)
       .map(([stateCode, state]: [string, Stats]) => ({
         stateCode,
         ...state,
@@ -44,7 +45,7 @@ export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take
   return (
     <Card style={{ height: '450px' }}>
       <Divider orientation="left" style={titleStyle}>
-        {take && `Top ${take} Impacted`} States Statistics
+        {take && `Top ${take} Impacted`} {stateOrProvince(countryCode)} Statistics
       </Divider>
       {!data ? (
         (loading && <Skeleton active />) || (error && <Empty />)

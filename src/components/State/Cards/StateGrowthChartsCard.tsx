@@ -6,6 +6,7 @@ import { useQuery } from 'graphql-hooks';
 
 import { titleStyle } from '../../Common.styles';
 import { getStateHistoryQuery } from '../../../queries/getStateHistoryQuery';
+import { nonNegative } from '../../../utils/nonNegative';
 
 type ChartType = 'casesGrowth' | 'deathRecoveryRateGrowth';
 
@@ -25,6 +26,8 @@ export const StateGrowthChartsCard = ({
     data.global[countryCode][stateCode] &&
     data.global[countryCode][stateCode].history.map((historyEntry: any) => ({
       ...historyEntry,
+      newlyConfirmedCases: nonNegative(historyEntry.newlyConfirmedCases),
+      totalConfirmedCases: nonNegative(historyEntry.totalConfirmedCases),
       deathRate: (historyEntry.totalDeaths / historyEntry.totalConfirmedCases).toFixed(2),
       recoveryRate: (historyEntry.totalRecoveredCases / historyEntry.totalConfirmedCases).toFixed(2),
       date: moment.utc(historyEntry.date).format('M/D'),
@@ -33,7 +36,7 @@ export const StateGrowthChartsCard = ({
   return (
     <Card style={{ width: '100%' }}>
       <Divider orientation="left" style={titleStyle}>
-        {chartType === 'casesGrowth' ? 'World Total Cases / Daily New Cases' : 'Death Rate / Recovery Rate'}
+        {chartType === 'casesGrowth' ? 'Total Cases / Daily New Cases' : 'Death Rate / Recovery Rate'}
       </Divider>
       {!dataWithShortdate ? (
         (loading && <Skeleton active />) || (error && <Empty />)
