@@ -50,7 +50,7 @@ Here is the example response:
 }
 ```
 
-Full API documentation can be found at [here](doc.covidstats.com.au).
+Full API documentation can be found at [here](http://docs.covidstats.com.au).
 
 ## Free API
 
