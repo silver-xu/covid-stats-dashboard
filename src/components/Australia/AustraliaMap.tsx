@@ -40,11 +40,18 @@ export const AustraliaMap = ({ australiaStats, metrics }: { australiaStats: Pare
               })}
               {geographies.map((geo) => {
                 const centroid = geoCentroid(geo);
+                const statesCode = statesGeoLookup[geo.properties.name];
+                const data = australiaStats[statesCode];
                 return (
                   <g key={geo.rsmKey + '-name'}>
                     {
                       <Marker coordinates={centroid}>
-                        <text y="2" fontSize={2} textAnchor="middle" fill="#555">
+                        <text
+                          y="2"
+                          fontSize={2}
+                          textAnchor="middle"
+                          fill={data ? colorScale(data[metrics], 'US', 'fgColor') : '#333'}
+                        >
                           {geo.properties.name}
                         </text>
                       </Marker>
