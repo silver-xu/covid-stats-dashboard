@@ -3,7 +3,7 @@ import { Card, Table, Skeleton, Empty } from 'antd';
 import { useQuery } from 'graphql-hooks';
 
 import { default as countries } from '../../config/countries.json';
-import { Stats } from '../../types/stats';
+import { Stats } from '../../types/Stats';
 import { getTopStatesStatsQuery } from '../../queries/getTopStatesStatsQuery';
 
 export const TopStatsTableCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {

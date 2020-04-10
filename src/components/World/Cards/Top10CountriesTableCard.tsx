@@ -4,7 +4,7 @@ import { useQuery } from 'graphql-hooks';
 
 import { getTopCountriesStatsQuery } from '../../../queries/getTopCountriesStatsQuery';
 import { default as countries } from '../../../config/countries.json';
-import { Stats } from '../../../types/stats';
+import { Stats } from '../../../types/Stats';
 
 export const Top10CountriesTableCard = () => {
   const { loading, error, data } = useQuery(getTopCountriesStatsQuery());

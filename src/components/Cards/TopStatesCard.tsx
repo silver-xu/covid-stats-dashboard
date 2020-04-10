@@ -3,7 +3,7 @@ import { Card, Divider, Skeleton, Empty, Radio, Row } from 'antd';
 import { PieChart, Pie, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { useQuery } from 'graphql-hooks';
 
-import { Stats, Metrics } from '../../types/stats';
+import { Stats, Metrics } from '../../types/Stats';
 import { default as countries } from '../../config/countries.json';
 import { titleStyle } from '../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';

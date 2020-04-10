@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import { default as countriesInfo } from '../config/countries.json';
-import { Stats } from '../types/stats';
+import { Stats } from '../types/Stats';
 
 export const extractStatesPerformance = (countryCode: string, data: any, metrics: string, topPerforming: boolean) => {
   const statesStats = (Object.entries(data.global[countryCode]) as any)

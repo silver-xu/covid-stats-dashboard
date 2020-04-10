@@ -9,7 +9,8 @@ import {
   ClockCircleOutlined,
   ReconciliationOutlined,
 } from '@ant-design/icons';
-import { Stats } from '../types/stats';
+
+import { Stats } from '../types/Stats';
 import { statisticStyles, negativeValueStyles, positiveValueStyles } from './Statistics.styles';
 
 export const Statistics = ({ stats }: { stats: Stats }) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'graphql-hooks';
 import { Skeleton, Empty, Card, Divider } from 'antd';
 
-import { Stats } from '../../types/stats';
+import { Stats } from '../../types/Stats';
 import { Statistics } from '../Statistics';
 import { default as countries } from '../../config/countries.json';
 import { titleStyle } from '../Common.styles';

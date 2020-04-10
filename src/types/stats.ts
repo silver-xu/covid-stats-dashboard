@@ -15,7 +15,6 @@ export interface Stats extends BaseStats {
 }
 
 export type ParentStats = Stats & {
-  // Object is useless but we can specify it
   [key: string]: Stats;
 };
 
