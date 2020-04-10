@@ -1,39 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
 import { HomeOutlined, GlobalOutlined, MonitorOutlined, BarChartOutlined } from '@ant-design/icons';
-import { SelectParam } from 'antd/lib/menu';
+import { Link } from 'react-router-dom';
 
 import { menuStyles } from './Dashboard.styles';
-import { MenuContext } from '../contexts/menuContext';
 import { default as countries } from '../config/countries.json';
+import { usePath } from '../utils/usePath';
 
 const { SubMenu, Item } = Menu;
 
 export const SideMenu = () => {
-  const menu = useContext(MenuContext);
-
-  const menuSelected = (params: SelectParam) => {
-    const [token1, token2] = params.key.split('.');
-    const key = token2 || token1;
-    const parent = token2 ? token1 : undefined;
-    const item = {
-      key,
-      parent,
-    };
-
-    menu.selectItem(item);
-  };
-
-  const selectedKeys = menu.item.key;
-  const openKeys = `${menu.item.parent || menu.item.key}Menu`;
+  const { countryCode, stateCode } = usePath();
+  const country = countryCode || 'Global';
 
   return (
     <Menu
       mode="inline"
-      defaultSelectedKeys={[selectedKeys]}
-      defaultOpenKeys={[openKeys]}
+      defaultOpenKeys={['GlobalMenu', `${country}Menu`]}
+      defaultSelectedKeys={[stateCode ? `${country}.${stateCode}` : country]}
       style={menuStyles}
-      onSelect={menuSelected}
     >
       <SubMenu
         key="GlobalMenu"
@@ -46,7 +31,7 @@ export const SideMenu = () => {
       >
         <Item key="Global">
           <MonitorOutlined />
-          Overview
+          <Link to="/">Overview</Link>
         </Item>
         <SubMenu
           key="AustraliaMenu"
@@ -59,13 +44,13 @@ export const SideMenu = () => {
         >
           <Item key="Australia">
             <MonitorOutlined />
-            Overview
+            <Link to="/Australia">Overview</Link>
           </Item>
 
           {Object.entries(countries.Australia.states).map(([stateCode, state]) => (
             <Item key={`Australia.${stateCode}`}>
               <BarChartOutlined />
-              {state.name}
+              <Link to={`/Australia/${stateCode}`}>{state.name}</Link>
             </Item>
           ))}
         </SubMenu>
@@ -80,13 +65,13 @@ export const SideMenu = () => {
         >
           <Item key="US">
             <MonitorOutlined />
-            Overview
+            <Link to="/US">Overview</Link>
           </Item>
 
           {Object.entries(countries.US.states).map(([stateCode, state]) => (
             <Item key={`US.${stateCode}`}>
               <BarChartOutlined />
-              {state.name}
+              <Link to={`/US/${stateCode}`}>{state.name}</Link>
             </Item>
           ))}
         </SubMenu>
@@ -95,19 +80,19 @@ export const SideMenu = () => {
           title={
             <span>
               <HomeOutlined />
-              China
+              <Link to="/US">China</Link>
             </span>
           }
         >
           <Item key="China">
             <MonitorOutlined />
-            Overview
+            <Link to="/China">Overview</Link>
           </Item>
 
           {Object.entries(countries.China.states).map(([stateCode, state]) => (
             <Item key={`China.${stateCode}`}>
               <BarChartOutlined />
-              {state.name}
+              <Link to={`/China/${stateCode}`}>{state.name}</Link>
             </Item>
           ))}
         </SubMenu>
@@ -122,47 +107,47 @@ export const SideMenu = () => {
         >
           <Item key="Canada">
             <MonitorOutlined />
-            Overview
+            <Link to="/Canada">Canada</Link>
           </Item>
 
           {Object.entries(countries.Canada.states).map(([stateCode, state]) => (
             <Item key={`Canada.${stateCode}`}>
               <BarChartOutlined />
-              {state.name}
+              <Link to={`/Canada/${stateCode}`}>{state.name}</Link>
             </Item>
           ))}
         </SubMenu>
         <Item key="UK">
           <BarChartOutlined />
-          United Kingdom
+          <Link to="/UK">United Kingdom</Link>
         </Item>
         <Item key="Italy">
           <BarChartOutlined />
-          Italy
+          <Link to="/Italy">Italy</Link>
         </Item>
         <Item key="Spain">
           <BarChartOutlined />
-          Spain
+          <Link to="/Spain">Spain</Link>
         </Item>
         <Item key="France">
           <BarChartOutlined />
-          France
+          <Link to="/France">France</Link>
         </Item>
         <Item key="Japan">
           <BarChartOutlined />
-          Japan
+          <Link to="/Japan">Japan</Link>
         </Item>
         <Item key="KoreaSouth">
           <BarChartOutlined />
-          South Korea
+          <Link to="/KoreaSouth">South Korea</Link>
         </Item>
         <Item key="India">
           <BarChartOutlined />
-          India
+          <Link to="/India">India</Link>
         </Item>
         <Item key="Iran">
           <BarChartOutlined />
-          Iran
+          <Link to="/Iran">Iran</Link>
         </Item>
       </SubMenu>
     </Menu>

@@ -35,7 +35,7 @@ export const extractStatesPerformance = (countryCode: string, data: any, metrics
   const listedStates = topPerforming
     ? statesRates.sort((stateRateA: any, stateRateB: any) => stateRateA.rate - stateRateB.rate).slice(0, 5)
     : statesRates.sort((stateRateA: any, stateRateB: any) => stateRateB.rate - stateRateA.rate).slice(0, 5);
-  debugger;
+
   const results = listedStates
     .map((listedState: any) => {
       const results: any = [];
