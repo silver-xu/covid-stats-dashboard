@@ -35,8 +35,9 @@ export const getCountries = (): Country[] =>
     ([countryCode, country]) =>
       ({
         code: countryCode,
+        name: country.name,
+        geoName: country.geoName,
         states: getStatesByCountryCode(countryCode),
-        ...country,
       } as Country),
   );
 
@@ -50,7 +51,8 @@ export const getStatesByCountryCode = (countryCode: string): State[] | undefined
       ([stateCode, state]: [string, any]) =>
         ({
           code: stateCode,
-          ...state,
+          name: state.name,
+          geoName: state.geoName,
         } as State),
     )
   );
@@ -58,3 +60,12 @@ export const getStatesByCountryCode = (countryCode: string): State[] | undefined
 
 export const getStateInCountry = (country: Country, stateCode: string): State =>
   country.states.find((state) => state.code === stateCode) as State;
+
+export const getCountryByStateCode = (stateCode: string): Country =>
+  getCountries().find((country) => country.states && country.states.find((state) => state.code === stateCode)) as
+  Country;
+
+export const isCountry = (code: string): boolean => {
+  const iterableCountries = countries as any;
+  return !!iterableCountries[code];
+};
