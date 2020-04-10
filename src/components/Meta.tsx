@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { Stats } from '../types/stats';
+import { Stats } from '../types/Stats';
 import { default as countries } from '../config/countries.json';
 import { usePath } from '../utils/usePath';
 
