@@ -4,7 +4,7 @@ import { RadioChangeEvent } from 'antd/lib/radio';
 import { useQuery } from 'graphql-hooks';
 
 import { Statistics } from '../../Statistics';
-import { ParentStats, Metrics } from '../../../types/stats';
+import { ParentStats, Metrics } from '../../../types/Stats';
 import { WorldMap } from '../WorldMap';
 import { getMapQuery } from '../../../queries/getMapQuery';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 import { geoCentroid } from 'd3';
 
-import { ParentStats, Metrics } from '../../types/stats';
+import { ParentStats, Metrics } from '../../types/Stats';
 import { default as countries } from '../../config/countries.json';
 import { colorScale } from '../../utils/colorScale';
 

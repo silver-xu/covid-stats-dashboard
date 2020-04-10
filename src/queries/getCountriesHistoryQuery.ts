@@ -1,5 +1,5 @@
 import { default as countries } from '../config/countries.json';
-import { Metrics } from '../types/stats';
+import { Metrics } from '../types/Stats';
 
 export const getCountriesHistoryQuery = (metrics: Metrics) => {
   const countryCodes = Object.keys(countries)

@@ -4,7 +4,7 @@ import { PieChart, Pie, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { useQuery } from 'graphql-hooks';
 
 import { getTopCountriesQuery } from '../../../queries/getTopCountriesQuery';
-import { Stats, Metrics } from '../../../types/stats';
+import { Stats, Metrics } from '../../../types/Stats';
 import { default as countries } from '../../../config/countries.json';
 import { titleStyle } from '../../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';

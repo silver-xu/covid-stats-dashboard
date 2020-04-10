@@ -1,5 +1,5 @@
 import { default as countries } from '../config/countries.json';
-import { Metrics } from '../types/stats';
+import { Metrics } from '../types/Stats';
 
 export const getStatesMapQuery = (countryCode: string, metrics: Metrics) => {
   const stateCodes = Object.keys((countries as any)[countryCode]['states'])

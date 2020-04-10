@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 
-import { ParentStats, Metrics } from '../../types/stats';
+import { ParentStats, Metrics } from '../../types/Stats';
 import { default as countries } from '../../config/countries.json';
 import { colorScale } from '../../utils/colorScale';
 import { geoCentroid } from 'd3';
@@ -48,7 +48,7 @@ export const AustraliaMap = ({ australiaStats, metrics }: { australiaStats: Pare
                       <Marker coordinates={centroid}>
                         <text
                           y="2"
-                          fontSize={2}
+                          fontSize={3}
                           textAnchor="middle"
                           fill={data ? colorScale(data[metrics], 'US', 'fgColor') : '#333'}
                         >
