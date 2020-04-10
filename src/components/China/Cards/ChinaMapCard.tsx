@@ -41,6 +41,7 @@ export const ChinaMapCard = () => {
                 <Radio.Button value="newlyConfirmedCases">New Cases</Radio.Button>
                 <Radio.Button value="currentConfirmedCases">Current Cases</Radio.Button>
                 <Radio.Button value="totalDeaths">Deaths</Radio.Button>
+                <Radio.Button value="newDeaths">New Deaths</Radio.Button>
               </Radio.Group>
             </Row>
             <Statistics stats={chinaStats} />
