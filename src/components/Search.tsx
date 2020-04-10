@@ -41,7 +41,7 @@ export const Search = () => {
         options: countriesResults.map((country) => renderItem(country.code, country.name)),
       },
       {
-        label: renderTitle('States', statesResults.length === 0),
+        label: renderTitle('States or Provinces', statesResults.length === 0),
         options: statesResults.map((state) => renderItem(state.code, state.name)),
       },
     ];

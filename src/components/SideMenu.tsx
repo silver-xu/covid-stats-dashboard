@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import { HomeOutlined, GlobalOutlined, MonitorOutlined, BarChartOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -9,19 +9,31 @@ import { usePath } from '../utils/usePath';
 import { Search } from './Search';
 
 const { SubMenu, Item } = Menu;
+const globalMenu = 'GlobalMenu';
 
 export const SideMenu = () => {
+  const [openedMenu, setOpenedMenu] = useState<string[]>([globalMenu]);
+
   const { countryCode, stateCode } = usePath();
   const country = countryCode || 'Global';
+
+  useEffect(() => {
+    setOpenedMenu([globalMenu, `${country}Menu`]);
+  }, [countryCode, stateCode]);
+
+  const handleOpenChange = (openKeys: string[]) => {
+    setOpenedMenu(openKeys);
+  };
 
   return (
     <>
       <Search />
       <Menu
         mode="inline"
-        openKeys={['GlobalMenu', `${country}Menu`]}
+        openKeys={openedMenu}
         selectedKeys={[stateCode ? `${country}.${stateCode}` : country]}
         style={menuStyles}
+        onOpenChange={handleOpenChange}
       >
         <SubMenu
           key="GlobalMenu"
@@ -153,6 +165,38 @@ export const SideMenu = () => {
             <Link to="/Iran">Iran</Link>
           </Item>
         </SubMenu>
+        <Item key="UK">
+          <BarChartOutlined />
+          <Link to="/UK">United Kingdom</Link>
+        </Item>
+        <Item key="Italy">
+          <BarChartOutlined />
+          <Link to="/Italy">Italy</Link>
+        </Item>
+        <Item key="Spain">
+          <BarChartOutlined />
+          <Link to="/Spain">Spain</Link>
+        </Item>
+        <Item key="France">
+          <BarChartOutlined />
+          <Link to="/France">France</Link>
+        </Item>
+        <Item key="Japan">
+          <BarChartOutlined />
+          <Link to="/Japan">Japan</Link>
+        </Item>
+        <Item key="KoreaSouth">
+          <BarChartOutlined />
+          <Link to="/KoreaSouth">South Korea</Link>
+        </Item>
+        <Item key="India">
+          <BarChartOutlined />
+          <Link to="/India">India</Link>
+        </Item>
+        <Item key="Iran">
+          <BarChartOutlined />
+          <Link to="/Iran">Iran</Link>
+        </Item>
       </Menu>
     </>
   );
