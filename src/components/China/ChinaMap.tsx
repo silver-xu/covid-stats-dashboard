@@ -4,13 +4,14 @@ import { geoCentroid } from 'd3';
 
 import { ParentStats, Metrics } from '../../types/Stats';
 import { colorScale } from '../../utils/colorScale';
-import { default as countries } from '../../config/countries.json';
+import { getCountryByCode, getStateInCountry } from '../../services/countryServices';
 
 const geoUrl = 'china-states-topo.json';
+const china = getCountryByCode('China');
 const statesGeoLookup = Object.assign(
   {},
-  ...Object.entries(countries.China.states).map(([statesCode, state]) => ({
-    [state.geoName]: statesCode,
+  ...china.states!.map((state) => ({
+    [state.geoName]: state.code,
   })),
 );
 
@@ -51,9 +52,9 @@ export const ChinaMap = ({ chinaStats, metrics }: { chinaStats: ParentStats; met
                           y="2"
                           fontSize={2}
                           textAnchor="middle"
-                          fill={data ? colorScale(data[metrics], 'US', 'fgColor') : '#333'}
+                          fill={data ? colorScale(data[metrics], 'China', 'fgColor') : '#333'}
                         >
-                          {(countries.China.states as any)[stateCode].name}
+                          {getStateInCountry(china, stateCode).name}
                         </text>
                       </Marker>
                     }

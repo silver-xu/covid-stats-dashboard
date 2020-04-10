@@ -6,7 +6,7 @@ import { useQuery } from 'graphql-hooks';
 import { titleStyle } from '../../Common.styles';
 import { getCountriesHistoryQuery } from '../../../queries/getCountriesHistoryQuery';
 import { extractCountriesPerformance } from '../../../data/extractCountriesPerformance';
-import { default as countriesInfo } from '../../../config/countries.json';
+import { getCountryByCode } from '../../../services/countryServices';
 
 export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
   const metrics = 'newlyConfirmedCases';
@@ -40,7 +40,7 @@ export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
               <Tooltip />
               <Legend />
               {performance.listedCountries.map((country: any, index: number) => {
-                const countryName = (countriesInfo as any)[country.countryCode].name;
+                const countryName = getCountryByCode(country.countryCode).name;
                 return (
                   <Line
                     type="monotone"

@@ -2,17 +2,19 @@ import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 
 import { ParentStats, Metrics } from '../../types/Stats';
-import { default as countries } from '../../config/countries.json';
 import { colorScale } from '../../utils/colorScale';
 import { geoCentroid } from 'd3';
+import { getCountryByCode } from '../../services/countryServices';
 
 const geoUrl = 'au-states-topo.json';
+const australia = getCountryByCode('Australia');
 const statesGeoLookup = Object.assign(
   {},
-  ...Object.entries(countries.Australia.states).map(([statesCode, state]) => ({
-    [state.geoName]: statesCode,
+  ...australia.states!.map((state) => ({
+    [state.geoName]: state.code,
   })),
 );
+
 export const AustraliaMap = ({ australiaStats, metrics }: { australiaStats: ParentStats; metrics: Metrics }) => {
   return (
     <ComposableMap

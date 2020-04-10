@@ -3,8 +3,8 @@ import { Card, Table, Skeleton, Empty } from 'antd';
 import { useQuery } from 'graphql-hooks';
 
 import { getTopCountriesStatsQuery } from '../../../queries/getTopCountriesStatsQuery';
-import { default as countries } from '../../../config/countries.json';
 import { Stats } from '../../../types/Stats';
+import { getCountryByCode } from '../../../services/countryServices';
 
 export const Top10CountriesTableCard = () => {
   const { loading, error, data } = useQuery(getTopCountriesStatsQuery());
@@ -20,7 +20,7 @@ export const Top10CountriesTableCard = () => {
       .sort((countryA: any, countryB: any) => countryB.totalConfirmedCases - countryA.totalConfirmedCases)
       .slice(0, 10)
       .map((country: any) => ({
-        name: (countries as any)[country.countryCode].name,
+        name: getCountryByCode(country.countryCode).name,
         ...country,
       }));
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { Card, Table, Skeleton, Empty } from 'antd';
 import { useQuery } from 'graphql-hooks';
 
-import { default as countries } from '../../config/countries.json';
 import { Stats } from '../../types/Stats';
 import { getTopStatesStatsQuery } from '../../queries/getTopStatesStatsQuery';
+import { getStateByCode } from '../../services/countryServices';
 
 export const TopStatsTableCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const { loading, error, data } = useQuery(getTopStatesStatsQuery(countryCode));
@@ -20,7 +20,7 @@ export const TopStatsTableCard = ({ countryCode, take }: { countryCode: string; 
       .sort((stateA: any, stateB: any) => stateB.totalConfirmedCases - stateA.totalConfirmedCases)
       .slice(0, take || Number.MAX_SAFE_INTEGER)
       .map((state: any) => ({
-        name: ((countries as any)[countryCode] as any).states[state.stateCode].name,
+        name: getStateByCode(countryCode, state.stateCode).name,
         ...state,
       }));
 
