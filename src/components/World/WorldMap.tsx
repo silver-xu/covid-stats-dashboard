@@ -10,7 +10,7 @@ const geoUrl = 'global-topo.json';
 const countriesGeoLookup = Object.assign(
   {},
   ...getCountries().map((country) => ({
-    [country.geoName]: country.geoName,
+    [country.geoName]: country.code,
   })),
 );
 
@@ -30,11 +30,14 @@ export const WorldMap = ({ worldStats, metrics }: { worldStats: ParentStats; met
             {geographies.map((geo) => {
               const statesCode = countriesGeoLookup[geo.properties.name];
               const data = worldStats[statesCode];
+              if (statesCode === 'US') {
+                debugger;
+              }
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={data ? colorScale(data[metrics], 'Canada') : '#EEE'}
+                  fill={data ? colorScale(data[metrics], undefined) : '#EEE'}
                 />
               );
             })}
@@ -50,7 +53,7 @@ export const WorldMap = ({ worldStats, metrics }: { worldStats: ParentStats; met
                         y="2"
                         fontSize={3}
                         textAnchor="middle"
-                        fill={data ? colorScale(data[metrics], 'US', 'fgColor') : '#333'}
+                        fill={data ? colorScale(data[metrics], undefined, 'fgColor') : '#333'}
                       >
                         {geo.properties.name}
                       </text>
