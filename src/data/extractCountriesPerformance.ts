@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-import { default as countriesInfo } from '../config/countries.json';
 import { Stats } from '../types/Stats';
+import { getCountryByCode } from '../services/countryServices';
 
 export const extractCountriesPerformance = (data: any, metrics: string, topPerforming: boolean) => {
   const countriesStats = (Object.entries(data.global) as any)
@@ -39,7 +39,7 @@ export const extractCountriesPerformance = (data: any, metrics: string, topPerfo
       const results: any = [];
       listedCountry.history.forEach((historyEntry: any) => {
         const result: any = { date: moment.utc(historyEntry.date).format('M/D') };
-        const countryName = (countriesInfo as any)[listedCountry.countryCode].name;
+        const countryName = getCountryByCode(listedCountry.countryCode).name;
         result[countryName] = historyEntry[metrics];
         results.push(result);
       });

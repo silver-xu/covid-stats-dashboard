@@ -3,14 +3,16 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 're
 import { geoCentroid } from 'd3';
 
 import { ParentStats, Metrics } from '../../types/Stats';
-import { default as countries } from '../../config/countries.json';
 import { colorScale } from '../../utils/colorScale';
+import { getCountryByCode } from '../../services/countryServices';
 
 const geoUrl = 'canada-states-topo.json';
+
+const australia = getCountryByCode('Canada');
 const statesGeoLookup = Object.assign(
   {},
-  ...Object.entries(countries.Canada.states).map(([statesCode, state]) => ({
-    [state.geoName]: statesCode,
+  ...australia.states!.map((state) => ({
+    [state.geoName]: state.code,
   })),
 );
 

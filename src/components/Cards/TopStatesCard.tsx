@@ -4,19 +4,20 @@ import { PieChart, Pie, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { useQuery } from 'graphql-hooks';
 
 import { Stats, Metrics } from '../../types/Stats';
-import { default as countries } from '../../config/countries.json';
 import { titleStyle } from '../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { radioButtonGroupStyles } from './TopStatesCard.styles';
 import { getTopStatesQuery } from '../../queries/getTopStatesQuery';
 import { stateOrProvince } from '../../utils/stateOrProvince';
+import { getStateInCountry, getCountryByCode } from '../../services/countryServices';
 
 export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const [metrics, setMetrics] = useState<Metrics>('totalConfirmedCases');
   const { loading, error, data } = useQuery(getTopStatesQuery(countryCode, metrics));
+  const country = getCountryByCode(countryCode);
 
   const renderLabel = function (entry: any) {
-    return ((countries as any)[countryCode].states as any)[entry.stateCode].name;
+    return getStateInCountry(country, entry.stateCode).name;
   };
 
   const handleMetricsChange = (e: RadioChangeEvent) => {
@@ -35,7 +36,7 @@ export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take
       .slice(0, take || Number.MAX_SAFE_INTEGER)
       .map((state: any) => {
         return {
-          name: ((countries as any)[countryCode].states as any)[state.stateCode].name,
+          name: getStateInCountry(country, state.stateCode).name,
           ...state,
         };
       });

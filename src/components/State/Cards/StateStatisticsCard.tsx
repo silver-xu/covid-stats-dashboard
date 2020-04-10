@@ -5,8 +5,8 @@ import { Skeleton, Empty, Card, Divider } from 'antd';
 import { Stats } from '../../../types/Stats';
 import { getStatsStatsQuery } from '../../../queries/getStateStatsQuery';
 import { Statistics } from '../../Statistics';
-import { default as countries } from '../../../config/countries.json';
 import { titleStyle } from '../../Common.styles';
+import { getStateByCode } from '../../../services/countryServices';
 
 export const StateStatisticsCard = ({ countryCode, stateCode }: { countryCode: string; stateCode: string }) => {
   const { loading, error, data } = useQuery(getStatsStatsQuery(countryCode, stateCode));
@@ -19,7 +19,7 @@ export const StateStatisticsCard = ({ countryCode, stateCode }: { countryCode: s
       ) : (
         <Card>
           <Divider orientation="left" style={titleStyle}>
-            {(countries as any)[countryCode].states[stateCode].name} COVID19 Statistics
+            {getStateByCode(countryCode, stateCode).name} COVID19 Statistics
           </Divider>
           <Statistics stats={stats} />
         </Card>

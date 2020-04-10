@@ -2,15 +2,15 @@ import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 
 import { ParentStats, Metrics } from '../../types/Stats';
-import { default as countries } from '../../config/countries.json';
 import { colorScale } from '../../utils/colorScale';
 import { geoCentroid } from 'd3';
+import { getCountries } from '../../services/countryServices';
 
 const geoUrl = 'global-topo.json';
 const countriesGeoLookup = Object.assign(
   {},
-  ...Object.entries(countries).map(([countryCode, country]) => ({
-    [country.geoName]: countryCode,
+  ...getCountries().map((country) => ({
+    [country.geoName]: country.geoName,
   })),
 );
 

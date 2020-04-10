@@ -5,10 +5,10 @@ import { useQuery } from 'graphql-hooks';
 
 import { getTopCountriesQuery } from '../../../queries/getTopCountriesQuery';
 import { Stats, Metrics } from '../../../types/Stats';
-import { default as countries } from '../../../config/countries.json';
 import { titleStyle } from '../../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { radioButtonGroupStyles } from './Top10CountriesCard.styles';
+import { getCountryByCode } from '../../../services/countryServices';
 
 export const Top10CountriesCard = () => {
   const [metrics, setMetrics] = useState<Metrics>('totalConfirmedCases');
@@ -33,7 +33,7 @@ export const Top10CountriesCard = () => {
       .sort((countryA: any, countryB: any) => countryB[metrics] - countryA[metrics])
       .slice(0, 10)
       .map((country: any) => ({
-        name: (countries as any)[country.countryCode].name,
+        name: getCountryByCode(country.countryCode).name,
         ...country,
       }));
 
