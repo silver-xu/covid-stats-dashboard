@@ -12,6 +12,7 @@ import {
 
 import { Stats } from '../types/Stats';
 import { statisticStyles, negativeValueStyles, positiveValueStyles } from './Statistics.styles';
+import { Meta } from './Meta';
 
 export const Statistics = ({ stats }: { stats: Stats }) => {
   const {
@@ -27,6 +28,7 @@ export const Statistics = ({ stats }: { stats: Stats }) => {
 
   return (
     <>
+      <Meta stats={stats} />
       <Row>
         <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
           <Statistic
