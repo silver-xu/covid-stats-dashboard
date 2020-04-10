@@ -30,9 +30,7 @@ export const WorldMap = ({ worldStats, metrics }: { worldStats: ParentStats; met
             {geographies.map((geo) => {
               const statesCode = countriesGeoLookup[geo.properties.name];
               const data = worldStats[statesCode];
-              if (statesCode === 'US') {
-                debugger;
-              }
+
               return (
                 <Geography
                   key={geo.rsmKey}

@@ -10,7 +10,11 @@ import { getStateByCode } from '../../../services/countryServices';
 
 export const StateStatisticsCard = ({ countryCode, stateCode }: { countryCode: string; stateCode: string }) => {
   const { loading, error, data } = useQuery(getStatsStatsQuery(countryCode, stateCode));
-  const stats = data && data.global[countryCode][stateCode] && (data.global[countryCode][stateCode] as Stats);
+  const stats =
+    data &&
+    data.global[countryCode] &&
+    data.global[countryCode][stateCode] &&
+    (data.global[countryCode][stateCode] as Stats);
 
   return (
     <>
