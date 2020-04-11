@@ -7,11 +7,12 @@ import { Statistics } from '../Statistics';
 import { titleStyle } from '../Common.styles';
 import { getCountryStatsQuery } from '../../queries/getCountryStatsQuery';
 import { getCountryByCode } from '../../services/countryServices';
+import { Country } from '../../types/Country';
 
 export const CountryStatisticsCard = ({ countryCode }: { countryCode: string }) => {
   const { loading, error, data } = useQuery(getCountryStatsQuery(countryCode));
   const stats = data && (data.global[countryCode] as Stats);
-  const country = getCountryByCode(countryCode);
+  const country = getCountryByCode(countryCode) as Country;
 
   return (
     <>

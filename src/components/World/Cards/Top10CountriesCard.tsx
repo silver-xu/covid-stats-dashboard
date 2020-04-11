@@ -33,7 +33,7 @@ export const Top10CountriesCard = () => {
       .sort((countryA: any, countryB: any) => countryB[metrics] - countryA[metrics])
       .slice(0, 10)
       .map((country: any) => ({
-        name: getCountryByCode(country.countryCode).name,
+        name: getCountryByCode(country.countryCode)!.name,
         ...country,
       }));
 

@@ -24,6 +24,7 @@ export const StateGrowthChartsCard = ({
   const dataWithShortdate =
     data &&
     data.global[countryCode] &&
+    data.global[countryCode][stateCode] &&
     data.global[countryCode][stateCode].history.map((historyEntry: any) => ({
       ...historyEntry,
       newlyConfirmedCases: nonNegative(historyEntry.newlyConfirmedCases),

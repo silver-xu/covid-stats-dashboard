@@ -41,7 +41,7 @@ export const StatesPerformanceCard = ({ top, countryCode }: { top: boolean; coun
               <Tooltip />
               <Legend />
               {performance.listedStates.map((state: any, index: number) => {
-                const stateName = getStateByCode(countryCode, state.stateCode).name;
+                const stateName = getStateByCode(countryCode, state.stateCode)!.name;
                 return (
                   <Line
                     type="monotone"

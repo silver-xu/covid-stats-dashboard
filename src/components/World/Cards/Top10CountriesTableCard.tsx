@@ -20,7 +20,7 @@ export const Top10CountriesTableCard = () => {
       .sort((countryA: any, countryB: any) => countryB.totalConfirmedCases - countryA.totalConfirmedCases)
       .slice(0, 10)
       .map((country: any) => ({
-        name: getCountryByCode(country.countryCode).name,
+        name: getCountryByCode(country.countryCode)!.name,
         ...country,
       }));
 

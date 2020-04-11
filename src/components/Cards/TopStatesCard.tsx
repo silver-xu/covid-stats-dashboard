@@ -10,14 +10,15 @@ import { radioButtonGroupStyles } from './TopStatesCard.styles';
 import { getTopStatesQuery } from '../../queries/getTopStatesQuery';
 import { stateOrProvince } from '../../utils/stateOrProvince';
 import { getStateInCountry, getCountryByCode } from '../../services/countryServices';
+import { Country } from '../../types/Country';
 
 export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const [metrics, setMetrics] = useState<Metrics>('totalConfirmedCases');
   const { loading, error, data } = useQuery(getTopStatesQuery(countryCode, metrics));
-  const country = getCountryByCode(countryCode);
+  const country = getCountryByCode(countryCode) as Country;
 
   const renderLabel = function (entry: any) {
-    return getStateInCountry(country, entry.stateCode).name;
+    return getStateInCountry(country, entry.stateCode)!.name;
   };
 
   const handleMetricsChange = (e: RadioChangeEvent) => {
@@ -36,7 +37,7 @@ export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take
       .slice(0, take || Number.MAX_SAFE_INTEGER)
       .map((state: any) => {
         return {
-          name: getStateInCountry(country, state.stateCode).name,
+          name: getStateInCountry(country, state.stateCode)!.name,
           ...state,
         };
       });
