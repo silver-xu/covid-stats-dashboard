@@ -62,7 +62,7 @@ As an one man development team, I wish everyone treats as they would have to pay
 
 ## Help me help you
 
-Unfortunately the developer of COVIDStats API is about to be layed-off by his current employer due to the economic downturn. If anyone knows about any position openings, please feel free to pass on my (LinkedIn Profile)[https://linkedin.com/in/silverxu].
+Unfortunately the developer of COVIDStats API is about to be layed-off by his current employer due to the economic downturn. If anyone knows about any position openings, please feel free to pass on my [LinkedIn Profile](https://linkedin.com/in/silverxu).
 
 Tech-stacks I specialise in:
 

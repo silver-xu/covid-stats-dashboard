@@ -24,7 +24,7 @@ export const colorScale = (toll: number, countryCode?: string, colorType: ColorT
 
   if (tollAfterScale === 0) {
     scale = 0;
-  } else if (tollAfterScale > 0 && tollAfterScale <= 10) {
+  } else if (tollAfterScale <= 10) {
     scale = 1;
   } else if (tollAfterScale > 10 && tollAfterScale <= 100) {
     scale = 2;
