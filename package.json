@@ -41,7 +41,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "yarn build && react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "yarn build && serverless client deploy --stage prod --no-confirm"
   },
