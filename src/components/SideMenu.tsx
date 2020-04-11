@@ -19,7 +19,7 @@ export const SideMenu = () => {
 
   useEffect(() => {
     setOpenedMenu([globalMenu, `${country}Menu`]);
-  }, [countryCode, stateCode]);
+  }, [country, stateCode]);
 
   const handleOpenChange = (openKeys: string[]) => {
     setOpenedMenu(openKeys);

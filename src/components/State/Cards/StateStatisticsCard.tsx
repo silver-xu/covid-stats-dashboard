@@ -23,7 +23,7 @@ export const StateStatisticsCard = ({ countryCode, stateCode }: { countryCode: s
       ) : (
         <Card>
           <Divider orientation="left" style={titleStyle}>
-            {getStateByCode(countryCode, stateCode).name} COVID19 Statistics
+            {getStateByCode(countryCode, stateCode)!.name} COVID19 Statistics
           </Divider>
           <Statistics stats={stats} />
         </Card>

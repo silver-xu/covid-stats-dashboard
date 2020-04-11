@@ -2013,6 +2013,13 @@
     "@types/geojson" "*"
     "@types/react" "*"
 
+"@types/react-tooltip@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@types/react-tooltip/-/react-tooltip-3.11.0.tgz#e7e7e9c67629f2b6f75ea67752922c9de0b64468"
+  integrity sha512-TkXMgkZ5aAKkFE9Wvt8OlOiPtF9ufgBOL9xWlRSzLBaoL12qSOBiyMcU4/8TyED1fuWkm5VTVarScwOPLSArYw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.9.0":
   version "16.9.32"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.32.tgz#f6368625b224604148d1ddf5920e4fefbd98d383"
@@ -12506,6 +12513,14 @@ react-smooth@^1.0.5:
     raf "^3.4.0"
     react-transition-group "^2.5.0"
 
+react-tooltip@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-4.2.1.tgz#7cb2ea0e32c95d4e91f6de7bc83a2b23375d4238"
+  integrity sha512-UnbPca1JJsCeJ/6bnBdivacciEFw5JjfFSALCnFbQkTfTo6kcPF0ryO+mUiMNIoaUBTI28wGlcDEQxfICQivcA==
+  dependencies:
+    prop-types "^15.7.2"
+    uuid "^7.0.3"
+
 react-transition-group@^2.5.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
@@ -14993,6 +15008,11 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
+  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"

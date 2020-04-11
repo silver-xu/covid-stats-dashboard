@@ -40,7 +40,7 @@ export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
               <Tooltip />
               <Legend />
               {performance.listedCountries.map((country: any, index: number) => {
-                const countryName = getCountryByCode(country.countryCode).name;
+                const countryName = getCountryByCode(country.countryCode)!.name;
                 return (
                   <Line
                     type="monotone"

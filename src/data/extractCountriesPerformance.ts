@@ -39,7 +39,7 @@ export const extractCountriesPerformance = (data: any, metrics: string, topPerfo
       const results: any = [];
       listedCountry.history.forEach((historyEntry: any) => {
         const result: any = { date: moment.utc(historyEntry.date).format('M/D') };
-        const countryName = getCountryByCode(listedCountry.countryCode).name;
+        const countryName = getCountryByCode(listedCountry.countryCode)!.name;
         result[countryName] = historyEntry[metrics];
         results.push(result);
       });
