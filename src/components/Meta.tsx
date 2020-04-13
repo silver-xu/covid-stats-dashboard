@@ -2,8 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Stats } from '../types/Stats';
-import { default as countries } from '../config/countries.json';
 import { usePath } from '../utils/usePath';
+import { getCountryByCode, getStateByCode } from '../services/countryServices';
 
 export const Meta = ({ stats }: { stats: Stats }) => {
   const {
@@ -18,10 +18,10 @@ export const Meta = ({ stats }: { stats: Stats }) => {
   } = stats;
 
   const { countryCode, stateCode } = usePath();
-  const countryName = countryCode ? (countries as any)[countryCode].name : 'World';
-  const stateName = countryCode && stateCode && (countries as any)[countryCode].states[stateCode].name;
-  const title = `${countryName}${' | ' + stateName} Dashboard COVID 19 Pandemic Statistics | Powered by Silver Xu`;
-  const keywords = `${countryName}, ${stateName}, John Hopkins, Statistics, Dashboard, COVID19, Infection, Pandemic`;
+  const countryName = !countryCode ? 'World' : getCountryByCode(countryCode)?.name;
+  const stateName = countryCode && stateCode && getStateByCode(countryCode, stateCode)?.name;
+  const title = `${countryName}${stateName ? ' | ' + stateName: '' } Dashboard COVID 19 Pandemic Statistics | Powered by Silver Xu`;
+  const keywords = `${countryName}, ${stateName || ''}, John Hopkins, Statistics, Dashboard, COVID19, Infection, Pandemic`;
   const description = `${countryName}${
     ' | ' + stateName
   } Statistics - Total Confirmed Cases: ${totalConfirmedCases}, Newly Confirmed Cases: ${newlyConfirmedCases}, Current Confirmed Cases: ${currentConfirmedCases}, Net newly confirmed Cases: ${netNewlyConfirmedCases}, Deaths: ${totalDeaths}, New Deaths: ${newDeaths}, Recovered Cases: ${totalRecoveredCases}, Newly Recovered Cases: ${newlyRecoveredCases}`;
