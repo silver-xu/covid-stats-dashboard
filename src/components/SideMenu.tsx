@@ -165,38 +165,6 @@ export const SideMenu = () => {
             <Link to="/Iran">Iran</Link>
           </Item>
         </SubMenu>
-        <Item key="UK">
-          <BarChartOutlined />
-          <Link to="/UK">United Kingdom</Link>
-        </Item>
-        <Item key="Italy">
-          <BarChartOutlined />
-          <Link to="/Italy">Italy</Link>
-        </Item>
-        <Item key="Spain">
-          <BarChartOutlined />
-          <Link to="/Spain">Spain</Link>
-        </Item>
-        <Item key="France">
-          <BarChartOutlined />
-          <Link to="/France">France</Link>
-        </Item>
-        <Item key="Japan">
-          <BarChartOutlined />
-          <Link to="/Japan">Japan</Link>
-        </Item>
-        <Item key="KoreaSouth">
-          <BarChartOutlined />
-          <Link to="/KoreaSouth">South Korea</Link>
-        </Item>
-        <Item key="India">
-          <BarChartOutlined />
-          <Link to="/India">India</Link>
-        </Item>
-        <Item key="Iran">
-          <BarChartOutlined />
-          <Link to="/Iran">Iran</Link>
-        </Item>
       </Menu>
     </>
   );
