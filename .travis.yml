@@ -19,7 +19,7 @@ jobs:
       if: branch = master
       before_install:
         - sudo apt-get install python3 -y
-        - sudo apt-get install python-pip3 -y
+        - sudo apt-get install python3-pip -y
         - pip install awsebcli
       install: true
       script:
