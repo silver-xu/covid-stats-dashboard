@@ -1,16 +1,24 @@
-service: covid-stats
+service: covid-stats-dashboard
 
 plugins:
-  - serverless-finch
+  - serverless-nextjs-plugin
+  - serverless-domain-manager
+  - serverless-offline
 
 custom:
-  hostedZoneName: covidstats.com.au
-  aliasHostedZoneId: Z1WCIGYICN2BYD
-  aliasDNSName: s3-website-ap-southeast-2.amazonaws.com
-  siteName: www.covidstats.com.au
-  client:
-    bucketName: ${self:custom.siteName}
-    distributionFolder: build
+  serverless-nextjs: # <- add here
+    assetsBucketName: 'covid-stats-assets-${self:provider.stage}'
+  serverless-offline:
+    httpPort: 3000
+  customDomain:
+    domainName: www.covidstats.com.au
+    stage: prod
+    basePath: ''
+    certificateName: '*.covidstats.com.au'
+    createRoute53Record: true
+    endpointType: 'regional'
+    securityPolicy: tls_1_2
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -18,36 +26,16 @@ provider:
   stage: ${opt:stage}
   region: ap-southeast-2
 
-resources:
-  Resources:
-    StaticSite:
-      Type: AWS::S3::Bucket
-      Properties:
-        AccessControl: PublicRead
-        BucketName: ${self:custom.siteName}
-        WebsiteConfiguration:
-          IndexDocument: index.html
+package: # <- add here
+  # exclude everything
+  # page handlers are automatically included by the plugin
+  exclude:
+    - ./**
 
-    StaticSiteS3BucketPolicy:
-      Type: AWS::S3::BucketPolicy
-      Properties:
-        Bucket:
-          Ref: StaticSite
-        PolicyDocument:
-          Statement:
-            - Sid: PublicReadGetObject
-              Effect: Allow
-              Principal: '*'
-              Action:
-                - s3:GetObject
-              Resource:
-                Fn::Join: ['', ['arn:aws:s3:::', { 'Ref': 'StaticSite' }, '/*']]
-    DnsRecord:
-      Type: 'AWS::Route53::RecordSet'
-      Properties:
-        AliasTarget:
-          DNSName: ${self:custom.aliasDNSName}
-          HostedZoneId: ${self:custom.aliasHostedZoneId}
-        HostedZoneName: ${self:custom.hostedZoneName}.
-        Name: ${self:custom.siteName}
-        Type: 'A'
+functions:
+  api:
+    handler: .next/serverless/index.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any

@@ -1,11 +1,17 @@
 language: node_js
+
+services:
+  - docker
+
 node_js:
   - '12.14.1'
-
 jobs:
   include:
-    - stage: test
-      script: yarn test
+    - stage: linting
+      script: yarn lint
+    - stage: publish
+      if: branch = master
+      script: yarn publish:docker
     - stage: deploy
       if: branch = master
       script: yarn deploy

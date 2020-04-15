@@ -1,0 +1,7 @@
+.git
+.vscode
+.next
+node_module
+.elasticbeanstalk/*
+.git
+.gitignore
