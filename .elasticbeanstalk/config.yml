@@ -1,0 +1,22 @@
+branch-defaults:
+  master:
+    environment: covid-stats-dashboard
+    group_suffix: null
+  ssr:
+    environment: covid-stats-dashboard
+deploy:
+  artifact: Dockerrun.aws.json
+global:
+  application_name: covid-stats-dashboard
+  branch: null
+  default_ec2_keyname: aws-eb
+  default_platform: Docker 18.09.9-ce
+  default_region: ap-southeast-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: eb-cli
+  workspace_type: Application
