@@ -26,7 +26,7 @@ export const Meta = ({ stats, countryCode, stateCode }: { stats: Stats; countryC
   }John Hopkins, Statistics, Dashboard, COVID19, Infection, Pandemic`;
   const description = `${countryName || 'World'} | ${
     (stateName && `${stateName} | `) || ''
-  }Statistics - Total Confirmed Cases: ${totalConfirmedCases}, Newly Confirmed Cases: ${newlyConfirmedCases}, Current Confirmed Cases: ${currentConfirmedCases}, Net newly confirmed Cases: ${netNewlyConfirmedCases}, Deaths: ${totalDeaths}, New Deaths: ${newDeaths}, Recovered Cases: ${totalRecoveredCases}, Newly Recovered Cases: ${newlyRecoveredCases}`;
+  }COVID 19 - total: ${totalConfirmedCases}, new: ${newlyConfirmedCases}, current: ${currentConfirmedCases}, net new: ${netNewlyConfirmedCases}, deaths: ${totalDeaths}, new deaths: ${newDeaths}, recovered: ${totalRecoveredCases}, new recovered: ${newlyRecoveredCases}`;
 
   return (
     <Head>
