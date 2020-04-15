@@ -20,7 +20,7 @@ jobs:
       before_install:
         - sudo apt-get install python3 -y
         - sudo apt-get install python3-pip -y
-        - pip install awsebcli
+        - pip install awsebcli --upgrade --user
       install: true
       script:
         - yarn deploy
