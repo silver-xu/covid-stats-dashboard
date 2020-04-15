@@ -28,3 +28,10 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+.serverless
+.vscode
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
