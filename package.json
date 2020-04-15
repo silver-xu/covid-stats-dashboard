@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:docker": "docker build -t silverxu/covid-stats-dashboard .",
+    "build:docker": "docker build -f docker/Dockerfile -t silverxu/covid-stats-dashboard .",
     "start": "next start",
     "start:docker": "docker run -p 80:3000 silverxu/covid-stats-dashboard",
     "publish:docker": "docker push silverxu/covid-stats-dashboard",
-    "deploy:docker": "yarn build:docker && yarn publish:docker",
+    "deploy": "eb deploy",
     "lint": "eslint **/*.tsx",
     "format": "eslint **/*.tsx --fix",
     "pretty": "prettier --write **/**/*.tsx"
