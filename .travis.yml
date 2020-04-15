@@ -11,6 +11,10 @@ jobs:
       script: yarn build
     - stage: publish
       if: branch = master
+      before_install:
+        - sudo apt-get install python3 -y
+        - sudo apt-get install python3-pip -y
+        - pip install awsebcli --upgrade --user
       install: true
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
@@ -20,7 +24,7 @@ jobs:
       before_install:
         - sudo apt-get install python3 -y
         - sudo apt-get install python3-pip -y
-        - pip install awsebcli
+        - pip install awsebcli --upgrade --user
       install: true
       script:
         - yarn deploy
