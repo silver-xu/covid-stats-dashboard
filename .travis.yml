@@ -4,7 +4,7 @@ services:
   - docker
 
 node_js:
-  - '12.14.1'
+  - "12.14.1"
 jobs:
   include:
     - stage: linting
