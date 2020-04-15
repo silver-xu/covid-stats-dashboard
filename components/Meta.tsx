@@ -35,6 +35,7 @@ export const Meta = ({ stats, countryCode, stateCode }: { stats: Stats; countryC
       <meta name="description" content={description} />
       <meta property="og:title" content={description} />
       <meta property="og:description" content={description} />
+      <meta property="og:image" content="/splash.jpg" />
     </Head>
   );
 };
