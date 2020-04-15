@@ -33,7 +33,7 @@ export const Meta = ({ stats, countryCode, stateCode }: { stats: Stats; countryC
       <title>{title}</title>
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={description} />
       <meta property="og:description" content={description} />
     </Head>
   );

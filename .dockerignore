@@ -1,10 +1,7 @@
 .git
 .vscode
 .next
-node_modules# Elastic Beanstalk Files
-.elasticbeanstalk/*
-.git
-.gitignore# Elastic Beanstalk Files
+node_module
 .elasticbeanstalk/*
 .git
 .gitignore
