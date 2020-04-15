@@ -4,7 +4,7 @@ services:
   - docker
 
 node_js:
-  - "12.14.1"
+  - '12.14.1'
 jobs:
   include:
     - stage: linting
@@ -12,7 +12,9 @@ jobs:
     - stage: publish
       if: branch = master
       install: true
-      script: yarn publish:docker
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - yarn publish:docker
     - stage: deploy
       if: branch = master
       install: true
