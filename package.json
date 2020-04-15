@@ -10,7 +10,7 @@
     "start:docker": "docker run -p 80:3000 silverxu/covid-stats-dashboard",
     "push:docker": "docker push silverxu/covid-stats-dashboard",
     "publish:docker": "yarn build:docker && yarn push:docker",
-    "deploy": "eb deploy",
+    "deploy": "eb deploy covid-stats-dashboard",
     "lint": "eslint **/*.tsx",
     "format": "eslint **/*.tsx --fix",
     "pretty": "prettier --write **/**/*.tsx"
