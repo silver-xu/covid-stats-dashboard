@@ -17,8 +17,13 @@ jobs:
         - yarn publish:docker
     - stage: deploy
       if: branch = master
+      before_install:
+        - sudo apt-get install python3 -y
+        - sudo apt-get install python-pip3 -y
+        - pip install awsebcli
       install: true
-      script: yarn deploy
+      script:
+        - yarn deploy
 
 after_success:
   - yarn codecov
