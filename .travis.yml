@@ -3,6 +3,8 @@ language: node_js
 services:
   - docker
 
+install: true
+
 node_js:
   - "12.14.1"
 jobs:
