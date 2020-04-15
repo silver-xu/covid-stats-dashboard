@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { Stats } from '../types/Stats';
 import { getCountryByCode, getStateByCode } from '../services/countryServices';
+import { config } from '../config';
 
 export const Meta = ({ stats, countryCode, stateCode }: { stats: Stats; countryCode: string; stateCode?: string }) => {
   const {
@@ -34,7 +35,7 @@ export const Meta = ({ stats, countryCode, stateCode }: { stats: Stats; countryC
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
       <meta property="og:title" content={description} />
-      <meta property="og:image" content="/splash.jpg" />
+      <meta property="og:image" content={config.ogImage} />
     </Head>
   );
 };
