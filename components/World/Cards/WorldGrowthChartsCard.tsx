@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Divider, Skeleton, Empty, Radio, Row } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area } from 'recharts';
+import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Bar } from 'recharts';
 import moment from 'moment';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -49,12 +49,24 @@ export const WorldGrowthChartsCard = () => {
             >
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="date" />
-              <YAxis />
+              <YAxis yAxisId="left" />
+              <YAxis yAxisId="right" orientation="right" />
               <Tooltip />
               <Legend />
               {currentChart === 'casesGrowth' && (
+                <Bar
+                  dataKey="newlyConfirmedCases"
+                  yAxisId="right"
+                  fill="#dddddd"
+                  stroke="#dddddd"
+                  name="New Cases"
+                  isAnimationActive={false}
+                />
+              )}
+              {currentChart === 'casesGrowth' && (
                 <Line
                   type="monotone"
+                  yAxisId="left"
                   dataKey="totalConfirmedCases"
                   stroke="#a05195"
                   name="Total Confirmed Cases"
@@ -62,18 +74,10 @@ export const WorldGrowthChartsCard = () => {
                   dot={false}
                 />
               )}
-              {currentChart === 'casesGrowth' && (
-                <Area
-                  dataKey="newlyConfirmedCases"
-                  fill="#f95d6a"
-                  stroke="#f95d6a"
-                  name="New Cases"
-                  isAnimationActive={false}
-                />
-              )}
               {currentChart === 'deathRecoveryRateGrowth' && (
                 <Line
                   type="monotone"
+                  yAxisId="left"
                   dataKey="deathRate"
                   stroke="#a05195"
                   name="Death Rate"
@@ -84,6 +88,7 @@ export const WorldGrowthChartsCard = () => {
               {currentChart === 'deathRecoveryRateGrowth' && (
                 <Line
                   type="monotone"
+                  yAxisId="right"
                   dataKey="recoveryRate"
                   stroke="#f95d6a"
                   name="Recovery Rate"

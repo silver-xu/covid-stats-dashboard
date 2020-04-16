@@ -2,9 +2,9 @@ import React from 'react';
 import { Space, Row, Col } from 'antd';
 
 import { AustraliaMapCard } from './Cards/AustraliaMapCard';
-import { TopStatesCard } from '../Cards/TopStatesCard';
-import { CountryGrowthChartsCard } from '../Cards/CountryGrowthChartsCard';
-import { TopStatsTableCard } from '../Cards/TopStatesTableCard';
+import { TopStatesCard } from '../Country/Cards/TopStatesCard';
+import { CountryGrowthChartsCard } from '../Country/Cards/CountryGrowthChartsCard';
+import { TopStatsTableCard } from '../Country/Cards/TopStatesTableCard';
 import { StatesPerformanceCard } from '../State/Cards/StatesPerformanceCard';
 
 const countryCode = 'Australia';

@@ -2,9 +2,9 @@ import React from 'react';
 import { Card, Table, Skeleton, Empty } from 'antd';
 import { useQuery } from '@apollo/react-hooks';
 
-import { Stats } from '../../types/Stats';
-import { getTopStatesStatsQuery } from '../../queries/getTopStatesStatsQuery';
-import { getStateByCode } from '../../services/countryServices';
+import { Stats } from '../../../types/Stats';
+import { getTopStatesStatsQuery } from '../../../queries/getTopStatesStatsQuery';
+import { getStateByCode } from '../../../services/countryServices';
 
 export const TopStatsTableCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const { loading, error, data } = useQuery(getTopStatesStatsQuery(countryCode));

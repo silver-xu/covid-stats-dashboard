@@ -2,6 +2,7 @@ import moment from 'moment';
 
 import { Stats } from '../types/Stats';
 import { getCountryByCode } from '../services/countryServices';
+import { nonNegative } from '../utils/nonNegative';
 
 export const extractCountriesPerformance = (data: any, metrics: string, topPerforming: boolean) => {
   const countriesStats = (Object.entries(data.global) as any)
@@ -20,14 +21,12 @@ export const extractCountriesPerformance = (data: any, metrics: string, topPerfo
   const countryRates = countriesStats.map((country: any) => {
     const countryMax = countriesMaxHistory.find((countryMax: any) => countryMax.countryCode === country.countryCode);
     const lastHistory = country.history[country.history.length - 1];
-    const rate = (
-      ((lastHistory[metrics] - countryMax!.maxDay[metrics]) /
-        moment.utc(lastHistory.date).diff(moment.utc(countryMax.maxDay.date), 'days')) as number
-    ).toFixed(2);
+    const rate = (((lastHistory[metrics] - countryMax!.maxDay[metrics]) /
+      moment.utc(lastHistory.date).diff(moment.utc(countryMax.maxDay.date), 'days')) as number).toFixed(2);
     return {
       countryCode: country.countryCode,
       rate,
-      history: country.history.slice(country.history.length - 15, country.history.length - 1),
+      history: country.history.slice(country.history.length - 29, country.history.length - 1),
     };
   });
   const listedCountries = topPerforming
@@ -40,7 +39,7 @@ export const extractCountriesPerformance = (data: any, metrics: string, topPerfo
       listedCountry.history.forEach((historyEntry: any) => {
         const result: any = { date: moment.utc(historyEntry.date).format('M/D') };
         const countryName = getCountryByCode(listedCountry.countryCode)!.name;
-        result[countryName] = historyEntry[metrics];
+        result[countryName] = nonNegative(historyEntry[metrics]);
         results.push(result);
       });
       return results;

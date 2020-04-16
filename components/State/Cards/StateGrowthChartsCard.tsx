@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Divider, Skeleton, Empty } from 'antd';
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area } from 'recharts';
+import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Bar } from 'recharts';
 import moment from 'moment';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -55,33 +55,38 @@ export const StateGrowthChartsCard = ({
             >
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="date" />
-              <YAxis />
+              <YAxis yAxisId="left" />
+              <YAxis yAxisId="right" orientation="right" />
               <Tooltip />
               <Legend />
+              {chartType === 'casesGrowth' && (
+                <Bar
+                  dataKey="newlyConfirmedCases"
+                  yAxisId="right"
+                  fill="#dddddd"
+                  stroke="#dddddd"
+                  name="New Cases"
+                  isAnimationActive={false}
+                />
+              )}
               {chartType === 'casesGrowth' && (
                 <Line
                   type="monotone"
                   dataKey="totalConfirmedCases"
                   stroke="#a05195"
+                  yAxisId="left"
                   name="Total Confirmed Cases"
                   isAnimationActive={false}
                   dot={false}
                 />
               )}
-              {chartType === 'casesGrowth' && (
-                <Area
-                  dataKey="newlyConfirmedCases"
-                  fill="#f95d6a"
-                  stroke="#f95d6a"
-                  name="New Cases"
-                  isAnimationActive={false}
-                />
-              )}
+
               {chartType === 'deathRecoveryRateGrowth' && (
                 <Line
                   type="monotone"
                   dataKey="deathRate"
                   stroke="#a05195"
+                  yAxisId="left"
                   name="Death Rate"
                   isAnimationActive={false}
                   dot={false}
@@ -90,6 +95,7 @@ export const StateGrowthChartsCard = ({
               {chartType === 'deathRecoveryRateGrowth' && (
                 <Line
                   type="monotone"
+                  yAxisId="right"
                   dataKey="recoveryRate"
                   stroke="#f95d6a"
                   name="Recovery Rate"

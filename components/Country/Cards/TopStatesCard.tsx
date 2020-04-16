@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Card, Divider, Skeleton, Empty, Radio, Row } from 'antd';
 import { PieChart, Pie, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { useQuery } from '@apollo/react-hooks';
-
-import { Stats, Metrics } from '../../types/Stats';
-import { titleStyle } from '../Common.styles';
 import { RadioChangeEvent } from 'antd/lib/radio';
+
+import { Stats, Metrics } from '../../../types/Stats';
+import { titleStyle } from '../../Common.styles';
 import { radioButtonGroupStyles } from './TopStatesCard.styles';
-import { getTopStatesQuery } from '../../queries/getTopStatesQuery';
-import { stateOrProvince } from '../../utils/stateOrProvince';
-import { getStateInCountry, getCountryByCode } from '../../services/countryServices';
-import { Country } from '../../types/Country';
+import { getTopStatesQuery } from '../../../queries/getTopStatesQuery';
+import { stateOrProvince } from '../../../utils/stateOrProvince';
+import { getStateInCountry, getCountryByCode } from '../../../services/countryServices';
+import { Country } from '../../../types/Country';
 
 export const TopStatesCard = ({ countryCode, take }: { countryCode: string; take?: number }) => {
   const [metrics, setMetrics] = useState<Metrics>('totalConfirmedCases');

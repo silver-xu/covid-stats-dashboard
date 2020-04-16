@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Divider, Skeleton, Empty } from 'antd';
-import { Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { useQuery } from '@apollo/react-hooks';
 
 import { titleStyle } from '../../Common.styles';
@@ -13,7 +13,7 @@ export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
   const { loading, error, data } = useQuery(getCountriesHistoryQuery(metrics));
   const performance = data && extractCountriesPerformance(data, metrics, top);
 
-  const colors = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600'];
+  const colors = ['#003f5c', '#a05195', '#f95d6a', '#d45087', '#ff7c43', '#ffa600', '#2f4b7c', '#665191'];
 
   return (
     <Card style={{ width: '100%' }}>
@@ -25,7 +25,7 @@ export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
       ) : (
         <>
           <ResponsiveContainer width="100%" minHeight="300px">
-            <LineChart
+            <AreaChart
               data={performance.statistics}
               margin={{
                 top: 20,
@@ -42,17 +42,19 @@ export const CountriesPerformanceCard = ({ top }: { top: boolean }) => {
               {performance.listedCountries.map((country: any, index: number) => {
                 const countryName = getCountryByCode(country.countryCode)!.name;
                 return (
-                  <Line
+                  <Area
+                    key={index}
                     type="monotone"
                     dataKey={countryName}
                     name={countryName}
                     stroke={colors[index]}
+                    fill={colors[index]}
                     isAnimationActive={false}
                     dot={false}
                   />
                 );
               })}
-            </LineChart>
+            </AreaChart>
           </ResponsiveContainer>
         </>
       )}

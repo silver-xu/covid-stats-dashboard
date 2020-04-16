@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Divider, Skeleton, Empty, Radio, Row } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area } from 'recharts';
+import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Bar } from 'recharts';
 import moment from 'moment';
 import { useQuery } from '@apollo/react-hooks';
 
-import { titleStyle } from '../Common.styles';
-import { getCountryHistoryQuery } from '../../queries/getCountryHistoryQuery';
-import { nonNegative } from '../../utils/nonNegative';
+import { titleStyle } from '../../Common.styles';
+import { getCountryHistoryQuery } from '../../../queries/getCountryHistoryQuery';
+import { nonNegative } from '../../../utils/nonNegative';
 
 type ChartType = 'casesGrowth' | 'deathRecoveryRateGrowth';
 
@@ -52,26 +52,29 @@ export const CountryGrowthChartsCard = ({ countryCode, chartType }: { countryCod
             >
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="date" />
-              <YAxis />
+              <YAxis yAxisId="left" />
+              <YAxis yAxisId="right" orientation="right" />
               <Tooltip />
               <Legend />
+              {currentChart === 'casesGrowth' && (
+                <Bar
+                  dataKey="newlyConfirmedCases"
+                  fill="#dddddd"
+                  yAxisId="right"
+                  stroke="#dddddd"
+                  name="New Cases"
+                  isAnimationActive={false}
+                />
+              )}
               {currentChart === 'casesGrowth' && (
                 <Line
                   type="monotone"
                   dataKey="totalConfirmedCases"
+                  yAxisId="left"
                   stroke="#a05195"
                   name="Total Confirmed Cases"
                   isAnimationActive={false}
                   dot={false}
-                />
-              )}
-              {currentChart === 'casesGrowth' && (
-                <Area
-                  dataKey="newlyConfirmedCases"
-                  fill="#f95d6a"
-                  stroke="#f95d6a"
-                  name="New Cases"
-                  isAnimationActive={false}
                 />
               )}
               {currentChart === 'deathRecoveryRateGrowth' && (
@@ -79,6 +82,7 @@ export const CountryGrowthChartsCard = ({ countryCode, chartType }: { countryCod
                   type="monotone"
                   dataKey="deathRate"
                   stroke="#a05195"
+                  yAxisId="left"
                   name="Death Rate"
                   isAnimationActive={false}
                   dot={false}
@@ -88,6 +92,7 @@ export const CountryGrowthChartsCard = ({ countryCode, chartType }: { countryCod
                 <Line
                   type="monotone"
                   dataKey="recoveryRate"
+                  yAxisId="right"
                   stroke="#f95d6a"
                   name="Recovery Rate"
                   isAnimationActive={false}
