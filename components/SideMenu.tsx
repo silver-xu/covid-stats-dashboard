@@ -4,7 +4,7 @@ import { HomeOutlined, GlobalOutlined, MonitorOutlined, BarChartOutlined } from 
 import Link from 'next/link';
 
 import { Search } from './Search';
-import { getCountries, getCountryByCode } from '../services/countryServices';
+import { getCountryByCode } from '../services/countryServices';
 
 const { SubMenu, Item } = Menu;
 const globalMenu = 'GlobalMenu';
@@ -58,11 +58,11 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(getCountryByCode('Australia').states).map(([stateCode, state]) => (
-              <Item key={`Australia.${stateCode}`}>
+            {getCountryByCode('Australia').states.map(({ code, name }) => (
+              <Item key={`Australia.${code}`}>
                 <BarChartOutlined />
-                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/Australia/${stateCode}`}>
-                  <a>{state.name}</a>
+                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/Australia/${code}`}>
+                  <a>{name}</a>
                 </Link>
               </Item>
             ))}
@@ -83,11 +83,11 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(getCountryByCode('US').states).map(([stateCode, state]) => (
-              <Item key={`US.${stateCode}`}>
+            {getCountryByCode('US').states.map(({ code, name }) => (
+              <Item key={`US.${code}`}>
                 <BarChartOutlined />
-                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/US/${stateCode}`}>
-                  <a>{state.name}</a>
+                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/US/${code}`}>
+                  <a>{name}</a>
                 </Link>
               </Item>
             ))}
@@ -108,11 +108,11 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(getCountryByCode('China').states).map(([stateCode, state]) => (
-              <Item key={`China.${stateCode}`}>
+            {getCountryByCode('China').states.map(({ code, name }) => (
+              <Item key={`China.${code}`}>
                 <BarChartOutlined />
-                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/China/${stateCode}`}>
-                  <a>{state.name}</a>
+                <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/China/${code}`}>
+                  <a>{name}</a>
                 </Link>
               </Item>
             ))}
@@ -133,11 +133,11 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(getCountryByCode('Canada').states).map(([stateCode, state]) => (
-              <Item key={`Canada.${stateCode}`}>
+            {getCountryByCode('China').states.map(({ code, name }) => (
+              <Item key={`Canada.${code}`}>
                 <BarChartOutlined />
-                <Link href="/Dashboard/[countryCode]" as={`/Dashboard/Canada/${stateCode}`}>
-                  <a>{state.name}</a>
+                <Link href="/Dashboard/[countryCode]" as={`/Dashboard/Canada/${code}`}>
+                  <a>{name}</a>
                 </Link>
               </Item>
             ))}
