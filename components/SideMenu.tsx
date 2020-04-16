@@ -3,9 +3,8 @@ import { Menu } from 'antd';
 import { HomeOutlined, GlobalOutlined, MonitorOutlined, BarChartOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 
-import { menuStyles } from './Dashboard.styles';
-import { default as countries } from '../config/countries.json';
 import { Search } from './Search';
+import { getCountries, getCountryByCode } from '../services/countryServices';
 
 const { SubMenu, Item } = Menu;
 const globalMenu = 'GlobalMenu';
@@ -28,7 +27,6 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
         mode="inline"
         openKeys={openedMenu}
         selectedKeys={[stateCode ? `${countryCode}.${stateCode}` : countryCode]}
-        style={menuStyles}
         onOpenChange={handleOpenChange}
       >
         <SubMenu
@@ -60,7 +58,7 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(countries.Australia.states).map(([stateCode, state]) => (
+            {Object.entries(getCountryByCode('Australia').states).map(([stateCode, state]) => (
               <Item key={`Australia.${stateCode}`}>
                 <BarChartOutlined />
                 <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/Australia/${stateCode}`}>
@@ -85,7 +83,7 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(countries.US.states).map(([stateCode, state]) => (
+            {Object.entries(getCountryByCode('US').states).map(([stateCode, state]) => (
               <Item key={`US.${stateCode}`}>
                 <BarChartOutlined />
                 <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/US/${stateCode}`}>
@@ -110,7 +108,7 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(countries.China.states).map(([stateCode, state]) => (
+            {Object.entries(getCountryByCode('China').states).map(([stateCode, state]) => (
               <Item key={`China.${stateCode}`}>
                 <BarChartOutlined />
                 <Link href="/Dashboard/[countryCode]/[stateCode]" as={`/Dashboard/China/${stateCode}`}>
@@ -135,7 +133,7 @@ export const SideMenu = ({ countryCode, stateCode }: { countryCode: string; stat
               </Link>
             </Item>
 
-            {Object.entries(countries.Canada.states).map(([stateCode, state]) => (
+            {Object.entries(getCountryByCode('Canada').states).map(([stateCode, state]) => (
               <Item key={`Canada.${stateCode}`}>
                 <BarChartOutlined />
                 <Link href="/Dashboard/[countryCode]" as={`/Dashboard/Canada/${stateCode}`}>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Space } from 'antd';
 
-import { CountryGrowthChartsCard } from './Cards/CountryGrowthChartsCard';
-import { CountryStatisticsCard } from './Cards/CountryStatisticsCard';
+import { CountryGrowthChartsCard } from './Country/Cards/CountryGrowthChartsCard';
+import { CountryStatisticsCard } from './Country/Cards/CountryStatisticsCard';
 
 export const CountryDashboard = ({ countryCode }: { countryCode: string }) => (
   <Space direction="vertical" style={{ width: '100%' }}>

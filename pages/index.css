@@ -42,3 +42,7 @@ body {
   left: 5px;
   position: fixed;
 }
+
+.ant-layout-sider-children {
+  background: #ffffff;
+}

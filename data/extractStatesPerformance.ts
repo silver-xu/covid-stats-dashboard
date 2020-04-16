@@ -2,6 +2,7 @@ import moment from 'moment';
 
 import { default as countriesInfo } from '../config/countries.json';
 import { Stats } from '../types/Stats';
+import { nonNegative } from '../utils/nonNegative';
 
 export const extractStatesPerformance = (countryCode: string, data: any, metrics: string, topPerforming: boolean) => {
   const statesStats = (Object.entries(data.global[countryCode]) as any)
@@ -21,15 +22,13 @@ export const extractStatesPerformance = (countryCode: string, data: any, metrics
   const statesRates = statesStats.map((state: any) => {
     const stateMax = statesMaxHistory.find((stateMax: any) => stateMax.stateCode === state.stateCode);
     const lastHistory = state.history[state.history.length - 1];
-    const rate = (
-      ((lastHistory[metrics] - stateMax!.maxDay[metrics]) /
-        moment.utc(lastHistory.date).diff(moment.utc(stateMax.maxDay.date), 'days')) as number
-    ).toFixed(2);
+    const rate = (((lastHistory[metrics] - stateMax!.maxDay[metrics]) /
+      moment.utc(lastHistory.date).diff(moment.utc(stateMax.maxDay.date), 'days')) as number).toFixed(2);
 
     return {
       stateCode: state.stateCode,
       rate,
-      history: state.history.slice(state.history.length - 15, state.history.length - 1),
+      history: state.history.slice(state.history.length - 29, state.history.length - 1),
     };
   });
   const listedStates = topPerforming
@@ -53,7 +52,7 @@ export const extractStatesPerformance = (countryCode: string, data: any, metrics
       const existingEntry = accum.find((entry: any) => entry.date === current.date);
       if (existingEntry) {
         Object.entries(current).forEach(([key, value]: [any, any]) => {
-          existingEntry[key] = value;
+          existingEntry[key] = nonNegative(value);
         });
       } else {
         accum.push(current);

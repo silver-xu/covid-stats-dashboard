@@ -2,12 +2,12 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Skeleton, Empty, Card, Divider } from 'antd';
 
-import { Stats } from '../../types/Stats';
-import { Statistics } from '../Statistics';
-import { titleStyle } from '../Common.styles';
-import { getCountryStatsQuery } from '../../queries/getCountryStatsQuery';
-import { getCountryByCode } from '../../services/countryServices';
-import { Country } from '../../types/Country';
+import { Stats } from '../../../types/Stats';
+import { Statistics } from '../../Statistics';
+import { titleStyle } from '../../Common.styles';
+import { getCountryStatsQuery } from '../../../queries/getCountryStatsQuery';
+import { getCountryByCode } from '../../../services/countryServices';
+import { Country } from '../../../types/Country';
 
 export const CountryStatisticsCard = ({ countryCode }: { countryCode: string }) => {
   const { loading, error, data } = useQuery(getCountryStatsQuery(countryCode));
